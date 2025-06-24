@@ -2,7 +2,6 @@ const config = require('./utils/config')
 const express = require('express')
 const app = express()
 const cors = require('cors')
-const notesRouter = require('./controllers/contacts')
 const middleware = require('./utils/middleware')
 const logger = require('./utils/logger')
 const mongoose = require('mongoose')
@@ -48,7 +47,7 @@ app.get('/', (req, res) => {
   `)
 })
 
-app.use('/api/contacts', notesRouter)
+app.use('/api/contacts', require('./controllers/contacts'))
 
 app.use(middleware.unknownEndpoint)
 app.use(middleware.errorHandler)

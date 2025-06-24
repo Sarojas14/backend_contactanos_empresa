@@ -7,6 +7,19 @@ router.get('/', async (req, res) => {
   res.json(contacts)
 })
 
-// Puedes agregar más rutas aquí (POST, PUT, DELETE, etc.)
+// Crear un nuevo contacto
+router.post('/', async (req, res) => {
+  const { name, number, email, subject } = req.body
+
+  const contact = new Contact({
+    name,
+    number,
+    email,
+    subject
+  })
+
+  const savedContact = await contact.save()
+  res.status(201).json(savedContact)
+})
 
 module.exports = router
